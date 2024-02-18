@@ -42,6 +42,7 @@ export function TokenPost(){
                 onChange={({ target })=>setPassword(target.value)}
             />
             <button>enviar</button>
+            {token}
         </form>
     )
 }
