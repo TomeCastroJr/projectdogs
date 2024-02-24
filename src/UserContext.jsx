@@ -1,5 +1,5 @@
-import { createContext, useState } from 'react'
-import { TOKEN_POST, USER_GET } from './api'
+import { createContext, useEffect, useState } from 'react'
+import { TOKEN_POST, TOKEN_VALIDATE_TOKEN, USER_GET } from './api'
 
 export const UserContext = createContext()
 
@@ -8,6 +8,28 @@ export function UserStorage({ children }){
     const [login, setLogin] = useState(null)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
+
+    useEffect(()=>{
+        async function autoLogin(){
+            const token = window.localStorage.getItem('token')
+            if(token){
+                try{
+                    setError(null)
+                    setLoading(true)
+                    const {url, options} = TOKEN_VALIDATE_TOKEN(token)
+                    const response = await fetch(url, options)
+                    if(!response.ok) throw new Error("Usuário inválido")
+                    await getUser(token)
+
+                }catch(err){
+                    
+                }finally{
+                    setLoading(false)
+                }
+            }
+        }
+        autoLogin()
+    },[])
 
     async function getUser(token){
         const {url, options} = USER_GET(token)
@@ -20,7 +42,8 @@ export function UserStorage({ children }){
         const {url, options} = TOKEN_POST({username, password})
         const response = await fetch(url, options)
         const json = await response.json()
-        getUser(json.token)
+        window.localStorage.setItem('token', json.token)
+        await getUser(json.token)
     }
 
     return(
