@@ -1,5 +1,5 @@
 .button{
-    min-width: 8rem;
+    width: fit-content;
     font-size: 1rem;
     font-family: var(--type-first);
     cursor: pointer;
