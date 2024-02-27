@@ -19,6 +19,7 @@ h1,h2,h3,h4,p{
 
 a{
     text-decoration: none;
+    color: #333;
 }
 
 ul,li{
@@ -39,8 +40,43 @@ button, input{
     color: #333;
 }
 
+.title{
+    font-family: var(--type-second);
+    line-height: 1;
+    font-size: 3rem;
+    margin: 1rem 0;
+    position: relative;
+    z-index: 1;
+}
+.title::before{
+    content: "";
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: .2rem;
+    background-color: #fb1;
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+}
+
 .container{
     max-width: 50rem;
     padding: 0 1rem;
     margin: 0 auto;
 }
+
+.animeleft{
+    animation: animeleft .5s forwards;
+}
+
+@keyframes animeleft {
+    from {
+        opacity: 0;
+        transform: translateX(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+  }

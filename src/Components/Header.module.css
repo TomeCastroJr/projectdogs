@@ -30,3 +30,7 @@
     background: url('../Assets/usuario.svg') no-repeat center center;
     margin-left: .5rem;
 }
+
+a{
+    display: flex;
+}
