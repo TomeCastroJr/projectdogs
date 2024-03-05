@@ -6,6 +6,7 @@ import { Login } from './Components/Login/Login'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { UserStorage } from './UserContext'
 import { Api } from './api/Api'
+import { User } from './Components/User/User'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/login/*" element={<Login/>} />
+          <Route path="/rota/*" element={<User/>} />
         </Routes>
         <Footer/>
       </UserStorage>

@@ -20,6 +20,7 @@
 
 .login{
     color: #333;
+    display: flex;
 }
 
 .login::after{
@@ -29,8 +30,4 @@
     height: 17px;
     background: url('../Assets/usuario.svg') no-repeat center center;
     margin-left: .5rem;
-}
-
-a{
-    display: flex;
 }
